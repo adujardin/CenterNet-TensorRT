@@ -23,8 +23,9 @@ project(onnx2trt LANGUAGES CXX C)
 
 set(ONNX2TRT_ROOT ${PROJECT_SOURCE_DIR})
 # Set C++11 as standard for the whole project
-set(CMAKE_CXX_STANDARD  11)
+set(CMAKE_CXX_STANDARD  17)
 #set(PYBIND11_CPP_STANDARD -std=c++11) #pybind11
+SET(TENSORRT_ROOT "/usr/local/cuda/")
 
 #find_package(pybind11 REQUIRED)
 

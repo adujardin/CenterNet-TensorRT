@@ -95,6 +95,8 @@ set(CU_INCLUDE
 
 #
 find_package(CUDA 10.0 REQUIRED)
+SET(TENSORRT_ROOT "/usr/local/cuda/")
+SET(CUDNN_ROOT "/usr/local/cuda/")
 
 # TensorRT
 if (USE_TENSORRT)
@@ -125,7 +127,7 @@ find_library(CUDNN_LIBRARY libcudnn.so HINTS ${CUDNN_ROOT} lib lib64)
 message("FOUND:${CUDNN_LIBRARY}")
 
 if(USE_OPENCV)
-find_package(OpenCV 3.0 REQUIRED)
+find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
     message("Found OpenCV:${OpenCV_INCLUDE_DIRS}, libs:${OpenCV_LIBS}")
 endif()
@@ -205,7 +207,7 @@ endif()
 add_executable(${DET_EXE_NAME} ${DET_EXE_SOURCES})
 target_include_directories(${DET_EXE_NAME} PUBLIC ${EXE_INCLUDE})
 target_link_libraries(${DET_EXE_NAME} ${TENSORRT_LIBRARY}
-    ${CUDA_LIBRARIES} ${CUDNN_LIBRARY})
+    ${CUDA_LIBRARIES})# ${CUDNN_LIBRARY})
 target_link_libraries(${DET_EXE_NAME} cu_lib)
 target_link_libraries(${DET_EXE_NAME} ${PROJECT_SOURCE_DIR}/tensorrt-plugin/build/libDCN.so)
 
@@ -218,7 +220,7 @@ endif()
 add_executable(${POSE_EXE_NAME} ${POSE_EXE_SOURCES})
 target_include_directories(${POSE_EXE_NAME} PUBLIC ${EXE_INCLUDE})
 target_link_libraries(${POSE_EXE_NAME} ${TENSORRT_LIBRARY}
-    ${CUDA_LIBRARIES} ${CUDNN_LIBRARY})
+    ${CUDA_LIBRARIES})# ${CUDNN_LIBRARY})
 target_link_libraries(${POSE_EXE_NAME} cu_lib)
 target_link_libraries(${POSE_EXE_NAME} ${PROJECT_SOURCE_DIR}/tensorrt-plugin/build/libDCN.so)
 

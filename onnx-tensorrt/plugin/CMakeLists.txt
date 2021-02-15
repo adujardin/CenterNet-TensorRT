@@ -70,6 +70,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Build configurations, global to all projects
 #--------------------------------------------------
 # TensorRT
+SET(TENSORRT_ROOT "/usr/local/cuda/")
 find_path(TENSORRT_INCLUDE_DIR NvInfer.h
   HINTS ${TENSORRT_ROOT}
   PATH_SUFFIXES include)
